@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm install --legacy-peer-deps --include=dev && npm run build",
+  "outputDirectory": "out",
+  "installCommand": "npm install --legacy-peer-deps --include=dev",
+  "framework": "nextjs",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
+
