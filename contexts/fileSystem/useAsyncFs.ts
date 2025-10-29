@@ -4,8 +4,8 @@ type Stats = any;
 const FileType = {} as any;
 import { useEffect, useMemo, useRef, useState } from "react";
 import type * as IBrowserFS from "browserfs";
-import type EmscriptenFileSystem from "browserfs/dist/node/backend/Emscripten";
-import type MountableFileSystem from "browserfs/dist/node/backend/MountableFileSystem";
+
+
 import {
   ICON_CACHE,
   ICON_CACHE_EXTENSION,

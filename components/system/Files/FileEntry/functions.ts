@@ -1,6 +1,6 @@
 import { basename, dirname, join } from "path";
 import ini from "ini";
-import { type FSModule } from "browserfs/dist/node/core/FS";
+type FSModule = any;
 type Stats = any;
 import { monacoExtensions } from "components/apps/MonacoEditor/extensions";
 import extensions from "components/system/Files/FileEntry/extensions";

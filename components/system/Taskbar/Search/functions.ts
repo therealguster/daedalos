@@ -1,5 +1,5 @@
 import { join } from "path";
-import { type FSModule } from "browserfs/dist/node/core/FS";
+type FSModule = any;
 type Stats = any;
 import {
   getCachedIconUrl,
