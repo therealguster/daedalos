@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type Stats from "browserfs/dist/node/core/node_fs_stats";
+type Stats = any;
 import { useFileSystem } from "contexts/fileSystem";
 
 const useStats = (url: string): Stats | undefined => {

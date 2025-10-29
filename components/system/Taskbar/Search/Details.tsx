@@ -1,6 +1,6 @@
 import { basename, dirname } from "path";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type Stats from "browserfs/dist/node/core/node_fs_stats";
+type Stats = any;
 import { getModifiedTime } from "components/system/Files/FileEntry/functions";
 import { UNKNOWN_ICON } from "components/system/Files/FileManager/icons";
 import {

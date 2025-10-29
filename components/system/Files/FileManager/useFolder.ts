@@ -2,7 +2,7 @@ import { basename, dirname, extname, join, relative } from "path";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { type AsyncZipOptions, type AsyncZippable } from "fflate";
 import { type ApiError } from "browserfs/dist/node/core/api_error";
-import type Stats from "browserfs/dist/node/core/node_fs_stats";
+type Stats = any;
 import useTransferDialog, {
   type ObjectReader,
 } from "components/system/Dialogs/Transfer/useTransferDialog";

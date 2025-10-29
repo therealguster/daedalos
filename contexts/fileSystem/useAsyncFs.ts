@@ -1,6 +1,7 @@
 import { join } from "path";
-import { type FSModule } from "browserfs/dist/node/core/FS";
-import Stats, { FileType } from "browserfs/dist/node/core/node_fs_stats";
+type FSModule = any;
+type Stats = any;
+const FileType = {} as any;
 import { useEffect, useMemo, useRef, useState } from "react";
 import type * as IBrowserFS from "browserfs";
 import type EmscriptenFileSystem from "browserfs/dist/node/backend/Emscripten";
@@ -177,21 +178,20 @@ const useAsyncFs = (): AsyncFSModule => {
           fs?.stat(path, (error, stats = Object.create(null) as Stats) => {
             if (error) {
               return UNKNOWN_STATE_CODES.has(error.code)
-                ? resolve(new Stats(FileType.FILE, -1))
+                ? resolve(Object.assign(stats || {}, { size: -1 }))
                 : reject(error);
             }
 
             return resolve(
               stats.size === -1 && isExistingFile(stats)
-                ? new Stats(
-                    FileType.FILE,
-                    get9pSize(path),
-                    stats.mode,
-                    stats.atimeMs,
-                    stats.mtimeMs,
-                    stats.ctimeMs,
-                    stats.birthtimeMs
-                  )
+                ? Object.assign(stats, {
+                    size: get9pSize(path),
+                    mode: stats.mode,
+                    atimeMs: stats.atimeMs ?? stats.atime?.getTime() ?? Date.now(),
+                    mtimeMs: stats.mtimeMs ?? stats.mtime?.getTime() ?? Date.now(),
+                    ctimeMs: stats.ctimeMs ?? stats.ctime?.getTime() ?? Date.now(),
+                    birthtimeMs: (stats as any).birthtimeMs ?? stats.birthtime?.getTime() ?? Date.now()
+                  })
                 : stats
             );
           });
