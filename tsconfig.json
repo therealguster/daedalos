@@ -21,6 +21,11 @@
     "target": "esnext",
     "types": ["jest", "wicg-file-system-access"]
   },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "exclude": ["node_modules"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

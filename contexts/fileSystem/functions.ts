@@ -1,8 +1,8 @@
 import { join } from "path";
-import type HTTPRequest from "browserfs/dist/node/backend/HTTPRequest";
-import type IndexedDBFileSystem from "browserfs/dist/node/backend/IndexedDB";
-import type OverlayFS from "browserfs/dist/node/backend/OverlayFS";
-import type InMemoryFileSystem from "browserfs/dist/node/backend/InMemory";
+type HTTPRequest = any;
+type IndexedDBFileSystem = any;
+type OverlayFS = any;
+type InMemoryFileSystem = any;
 import { type FileSystemObserver } from "contexts/fileSystem/useFileSystemContextState";
 import { FS_HANDLES } from "utils/constants";
 import { type RootFileSystem } from "contexts/fileSystem/useAsyncFs";
@@ -114,7 +114,10 @@ export const resetStorage = (rootFs?: RootFileSystem): Promise<void> =>
       if (writable?.getName() === "InMemory" || !writable?.empty) {
         resolve();
       } else {
-        writable.empty((apiError) => (apiError ? reject(apiError) : resolve()));
+        writable.empty((apiError: unknown) => {
+          if (apiError) return reject(apiError as Error);
+          return resolve();
+        });
       }
     };
 
